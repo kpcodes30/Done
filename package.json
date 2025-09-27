@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "done",
+  "version": "1.0.0",
+  "description": "A minimalist to-do app built with JavaScript, Tailwind CSS, and HTML5.",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss styles.css -o dist/output.css",
+    "watch": "postcss styles.css -o dist/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpcodes30/Done.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpcodes30/Done/issues"
+  },
+  "homepage": "https://github.com/kpcodes30/Done#readme",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.13"
+  }
+}
