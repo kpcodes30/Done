@@ -5,43 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Done</title>
     <link rel="stylesheet" href="dist/output.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.58.0"></script>
+    <style>
+        /* Custom button animation */
+        .action-button {
+            box-shadow: 6px 6px 0px 0px #ffffff;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .action-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px 0px #ffffff;
+        }
+        .action-button:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px 0px #ffffff;
+        }
+    </style>
 </head>
-<body class="p-4">
+<body class="bg-black text-white min-h-screen flex flex-col font-sans selection:bg-white selection:text-black overflow-x-hidden">
 
-    <header>
-        <div class="navbar flex flex-row flex-nowrap items-center justify-start gap-2 w-full">
-          <div class="flex flex-row  gap-15">
-            <button class="menu-icon cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32" viewBox="0 0 24 24">
-                    <path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"></path>
-
+    <header class="w-full p-4 md:p-8 flex justify-between items-center fixed top-0 left-0 z-50">
+        <div class="flex items-center gap-8">
+            <button class="cursor-pointer hover:opacity-70 transition-opacity group">
+                <div class="space-y-2">
+                    <span class="block w-8 h-0.5 bg-white transition-transform group-hover:translate-x-1"></span>
+                    <span class="block w-8 h-0.5 bg-white transition-transform group-hover:-translate-x-1"></span>
+                </div>
             </button>
-            <div class="logo flex items-center gap-2 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800">
-                    <path d="M9 11l3 3L22 4"></path>
-                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+            <div class="flex items-center gap-3 select-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" class="text-white">
+                    <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-2xl font-bold text-gray-800">Done</span>
-            </div>
-          </div>
-            <div class="github-icon ml-auto">
-                <a href="https://github.com/kpcodes30/Done" target="_blank" class="cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
+                <span class="text-2xl font-bold tracking-widest uppercase">Done</span>
             </div>
         </div>
+        
+        <a href="https://github.com/kpcodes30/Done" target="_blank" class="hover:opacity-70 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+        </a>
     </header>
-    <! hero>
-    <section class="hero mt-20">
-        <div class="hero-content text-center">
-            <h1 class="text-7xl font-bold mb-4">Get Things Done</h1>
-             <p class="text-5xl font-normal">A Minimalist Approach to Productivity</p>
-            <button class="btn btn-primary btn-lg mt-8 bg-white text-gray-900 py-3 px-6 border-2 border-gray-900 rounded-lg shadow-lg hover:bg-gray-900 hover:text-white transition-all duration-300 ease-in-out cursor-pointer text-lg font-medium tracking-wide">Get Started</button>
+
+    <main class="flex-grow flex flex-col items-center justify-center px-4 relative w-full">
+        <!-- Grid Background -->
+        <div class="absolute inset-0 z-0 pointer-events-none" 
+             style="background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px;">
+        </div>
+        
+        <div class="z-10 flex flex-col items-center text-center w-full max-w-4xl mt-10 md:mt-20">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                Absolute Focus. <br class="md:hidden" /> <span class="text-white/50">Zero Bloat.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl font-light text-white/60 max-w-xl mb-12 mx-auto">
+                Lightning fast. Offline first. Built for the absolute doer.
+            </p>
+
+            <!-- Interactive Demo Container -->
+            <div class="w-full max-w-2xl mx-auto mb-16 text-left">
+                <div class="bg-black/40 border border-white/10 rounded-xl p-6 md:p-8 backdrop-blur-md shadow-2xl select-none">
+                    
+                    <div class="tree-node" data-expanded="true">
+                        <div class="flex items-center gap-3 py-1 group">
+                            <div class="toggle-trigger w-5 h-5 border border-white/20 flex items-center justify-center text-[10px] text-white/50 hover:border-white hover:text-white transition-colors font-mono toggle-icon cursor-pointer">[-]</div>
+                            
+                            <div class="task-clickable flex items-center gap-3 flex-grow cursor-pointer" data-progress="25">
+                                <span class="font-bold text-white tracking-wide text-lg task-text transition-all duration-300">Launch SaaS Product</span>
+                                <span class="text-xs text-white/50 font-mono ml-2 progress-text">25.00%</span>
+                                <div class="ml-auto h-1 w-24 bg-white/10 rounded-full overflow-hidden hidden sm:block">
+                                    <div class="h-full bg-white w-[25%] progress-bar transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pl-2.5 ml-2.5 border-l border-white/10 mt-2 space-y-2 node-children">
+                            
+                            <div class="tree-node" data-expanded="true">
+                                <div class="flex items-center gap-3 py-1 group">
+                                    <div class="toggle-trigger w-4 h-4 border border-white/20 flex items-center justify-center text-[9px] text-white/50 hover:border-white hover:text-white transition-colors font-mono toggle-icon cursor-pointer">[-]</div>
+                                    
+                                    <div class="task-clickable flex items-center gap-3 flex-grow cursor-pointer" data-progress="50">
+                                        <span class="text-white/90 task-text transition-all duration-300">Development</span>
+                                        <span class="text-xs text-white/50 font-mono ml-2 progress-text">50.00%</span>
+                                        <div class="ml-auto h-1 w-16 bg-white/10 rounded-full overflow-hidden hidden sm:block">
+                                            <div class="h-full bg-white w-[50%] progress-bar transition-all duration-300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pl-2.5 ml-2.5 border-l border-white/10 mt-2 space-y-2 node-children">
+                                    <div class="flex items-center gap-3 py-1 task-clickable cursor-pointer group">
+                                        <div class="w-3 h-3 border border-white/60 bg-white task-checkbox transition-colors"></div>
+                                        <span class="text-white/50 line-through text-sm task-text transition-all duration-300">Database Schema</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 py-1 task-clickable cursor-pointer group">
+                                        <div class="w-3 h-3 border border-white/60 task-checkbox transition-colors"></div>
+                                        <span class="text-white/90 text-sm task-text transition-all duration-300">API Endpoints</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tree-node" data-expanded="false">
+                                <div class="flex items-center gap-3 py-1 group">
+                                    <div class="toggle-trigger w-4 h-4 border border-white/20 flex items-center justify-center text-[9px] text-white/50 hover:border-white hover:text-white transition-colors font-mono toggle-icon cursor-pointer">[+]</div>
+                                    
+                                    <div class="task-clickable flex items-center gap-3 flex-grow cursor-pointer" data-progress="0">
+                                        <span class="text-white/90 task-text transition-all duration-300">Marketing</span>
+                                        <span class="text-xs text-white/50 font-mono ml-2 progress-text">0.00%</span>
+                                        <div class="ml-auto h-1 w-16 bg-white/10 rounded-full overflow-hidden hidden sm:block">
+                                            <div class="h-full bg-white w-[0%] progress-bar transition-all duration-300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pl-2.5 ml-2.5 border-l border-white/10 mt-2 space-y-2 node-children hidden">
+                                    <div class="flex items-center gap-3 py-1 task-clickable cursor-pointer group">
+                                        <div class="w-3 h-3 border border-white/60 task-checkbox transition-colors"></div>
+                                        <span class="text-white/90 text-sm task-text transition-all duration-300">Landing Page Copy</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 py-1 task-clickable cursor-pointer group">
+                                        <div class="w-3 h-3 border border-white/60 task-checkbox transition-colors"></div>
+                                        <span class="text-white/90 text-sm task-text transition-all duration-300">Social Media Assets</span>
+                                    </div>
+                                     <div class="flex items-center gap-3 py-1 task-clickable cursor-pointer group">
+                                        <div class="w-3 h-3 border border-white/60 task-checkbox transition-colors"></div>
+                                        <span class="text-white/90 text-sm task-text transition-all duration-300">Product Hunt Launch</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-    </section>
-            <script src="script.js" type="module"></script>
+            
+            <button class="action-button bg-black border-2 border-white text-white px-10 py-4 md:px-14 md:py-5 text-base md:text-lg font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-colors mb-20">
+                Start Tracking
+            </button>
+
+            <!-- Feature Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-16 max-w-5xl mx-auto text-left px-4 w-full">
+                <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">Lightning Fast</h3>
+                    <p class="text-white/50 text-sm font-mono">Zero lag. Instant interactions. <br>Built for flow state.</p>
+                </div>
+                <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">Offline First</h3>
+                    <p class="text-white/50 text-sm font-mono">No internet? No problem. <br>Your data stays local.</p>
+                </div>
+                <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">100% Private</h3>
+                    <p class="text-white/50 text-sm font-mono">No tracking. No cloud sync required. <br>You own your data.</p>
+                </div>
+                <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">Zero Bloat</h3>
+                    <p class="text-white/50 text-sm font-mono">No AI. No calendars. No clutter. <br>Just pure execution.</p>
+                </div>
+                <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">Instant Start</h3>
+                    <p class="text-white/50 text-sm font-mono">No learning curve. <br>Type. Enter. Done.</p>
+                </div>
+                 <div class="flex flex-col gap-2 group">
+                    <h3 class="text-white font-bold text-lg tracking-widest uppercase border-b border-white/20 pb-2 group-hover:border-white transition-colors">Keyboard First</h3>
+                    <p class="text-white/50 text-sm font-mono">Never touch the mouse. <br>Shortcuts for everything.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" type="module"></script>
 </body>
 </html>
